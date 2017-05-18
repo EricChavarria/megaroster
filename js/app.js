@@ -1,20 +1,19 @@
 $(document).foundation()
 
-const megaroster = {
-    students: [],
-
-    init() {
+class Megaroster {
+    constructor() {
         this.studentList = document.querySelector('#student-list')
+        this.students = []
         this.max = 0
         this.setupEventListeners()
         this.load()
-    },
+    }
 
     setupEventListeners() {
         document
             .querySelector('#new-student')
             .addEventListener('submit', this.addStudentViaForm.bind(this))
-    },
+    }
 
     load() {
         const rosterString = localStorage.getItem('roster')
@@ -24,7 +23,7 @@ const megaroster = {
                 .reverse()
                 .map(this.addStudent.bind(this))
         }
-    },
+    }
 
     addStudentViaForm(ev) {
         ev.preventDefault()
@@ -35,7 +34,7 @@ const megaroster = {
         }
         this.addStudent(student)
         f.reset()
-    },
+    }
 
     addStudent(student) {
         this.students.unshift(student)
@@ -48,11 +47,11 @@ const megaroster = {
         }
 
         this.save()
-    },
+    }
 
     prependChild(parent, child) {
         parent.insertBefore(child, parent.firstChild)
-    },
+    }
 
     buildListItem(student) {
         const template = document.querySelector('.student.template')
@@ -74,11 +73,11 @@ const megaroster = {
             .querySelector('button.promote')
             .addEventListener('click', this.promoteStudent.bind(this, student))
         return li
-    },
+    }
 
     save() {
         localStorage.setItem('roster', JSON.stringify(this.students))
-    },
+    }
 
     promoteStudent(student, ev) {
         const btn = ev.target
@@ -92,7 +91,7 @@ const megaroster = {
         }
 
         this.save()
-    },
+    }
 
     removeStudent(ev) {
         const btn = ev.target
@@ -108,10 +107,10 @@ const megaroster = {
 
         li.remove()
         this.save()
-    },
+    }
 
     removeClassName(el, className) {
         el.className = el.className.replace(className, '').trim()
     }
 }
-megaroster.init()
+new Megaroster()
