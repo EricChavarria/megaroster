@@ -60,7 +60,6 @@ const megaroster = {
 
     findName(index) { 
         for (let i = 0; i < this.students.length; i ++){
-            console.log(this.students.length)
             if (this.students[i].id == index)
                 {
                     return i
