@@ -31,7 +31,6 @@ const megaroster = {
         this.max ++
         f.reset()
 
-        localStorage.setItem('roster', JSON.stringify(this.students))
     },
 
     prependChild(parent, child) {
@@ -51,23 +50,24 @@ const megaroster = {
         return li
     },
 
-    removeStudent(ev) {
-        const btn = ev.target
-        const name = btn.closest('.student')
-        name.remove()
-        const id = name.getAttribute('data-id')
-        const index = this.findName(id)
-        this.students.splice(index , 1)
+    save() {
+        localStorage.setItem('roster', JSON.stringify(this.students))
     },
 
-    findName(index) { 
-        for (let i = 0; i < this.students.length; i ++){
-            if (this.students[i].id == index)
-                {
-                    return i
+    removeStudent(ev) {
+        const btn = ev.target
+        const li = btn.closest('.student')
+        
+        for (let i = 0; i < this.students.length; i++){
+            let currentId = this.students[i].id.toString()
+            if (currentId === li.dataset.id){
+                    this.students.splice(i, 1)
+                    break
                 }
-            
         }
+
+        li.remove()
+        this.save()
     },
 
     removeClassName(el, className) {
