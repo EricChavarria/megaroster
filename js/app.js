@@ -113,4 +113,4 @@ class Megaroster {
         el.className = el.className.replace(className, '').trim()
     }
 }
-new Megaroster()
+const roster = new Megaroster()
