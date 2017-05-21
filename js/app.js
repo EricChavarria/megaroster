@@ -94,13 +94,22 @@ class Megaroster {
 
     edit(student, ev) {
         const btn = ev.target
-        const div = btn.closest('.student').firstElementChild
+        const li = btn.closest('.student')
+        const div = li.firstElementChild
         if(div.isContentEditable === false)
         {
             div.setAttribute("contenteditable", "true")
         }
         else{
             div.setAttribute("contenteditable", "false")
+            for (let i = 0; i < this.students.length; i++){
+            let currentId = this.students[i].id.toString()
+            if (currentId === li.dataset.id){
+                    this.students[i].name = div.textContent
+                    break
+                }
+           }
+           this.save()
         }
     }
 
