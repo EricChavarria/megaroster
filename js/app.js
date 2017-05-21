@@ -70,22 +70,38 @@ class Megaroster {
     }
 
     setupActions(li, student) {
-         li
+        li
             .querySelector('button.remove')
             .addEventListener('click', this.removeStudent.bind(this))
         li
             .querySelector('button.promote')
             .addEventListener('click', this.promoteStudent.bind(this, student))
-         li
+        li
             .querySelector('button.move-up')
             .addEventListener('click', this.moveUp.bind(this, student))
-          li
-             .querySelector('button.move-down')
-             .addEventListener('click', this.moveDown.bind(this, student))
+        li
+            .querySelector('button.move-down')
+            .addEventListener('click', this.moveDown.bind(this, student))
+        li
+            .querySelector('button.edit')
+            .addEventListener('click', this.edit.bind(this, student))
+        
     }
 
     save() {
         localStorage.setItem('roster', JSON.stringify(this.students))
+    }
+
+    edit(student, ev) {
+        const btn = ev.target
+        const div = btn.closest('.student').firstElementChild
+        if(div.isContentEditable === false)
+        {
+            div.setAttribute("contenteditable", "true")
+        }
+        else{
+            div.setAttribute("contenteditable", "false")
+        }
     }
 
     moveUp(student, ev) {
