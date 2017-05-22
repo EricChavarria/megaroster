@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Barrio');
+
+h2 {
+    font-family: 'Barrio', cursive;
+}
+
 .template {
   visibility: hidden;
 }
@@ -6,6 +12,7 @@
   border: 1px solid #ddd;
   padding: 0.75rem 1.25rem;
   height: 4rem;
+  transition: 0.25s;
 }
 
 .student + .student {
@@ -18,12 +25,16 @@
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: calc(100% - 195px)
+  width: calc(100% - 255px)
 }
 
 .actions {
   float: right;
   margin-bottom: 0;
+}
+
+.actions .button:hover {
+    transform: scale(1.1)
 }
 
 .promoted {
@@ -38,12 +49,12 @@
   cursor: not-allowed;
 }
 
-[contenteditable]:hover {
+[contenteditable="true"]:hover {
   outline-color: -webkit-focus-ring-color;
   outline-style: auto;
   outline-width: 2px;
 }
 
-[contenteditable]:focus {
+[contenteditable="true"]:focus {
   outline-width: 5px;
 }
